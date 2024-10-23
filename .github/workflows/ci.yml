@@ -17,5 +17,14 @@ jobs:
       with:
         node-version: '20'
 
-    - run: npm install
-    - run: npm test
+    # 安裝專案依賴
+    - name: Install dependencies
+      run: npm install
+
+    # 確保 mocha 擁有執行權限 (如果需要)
+    - name: Grant Mocha execute permissions
+      run: chmod +x ./node_modules/.bin/mocha
+
+    # 執行測試
+    - name: Run tests
+      run: ./node_modules/.bin/mocha --exit

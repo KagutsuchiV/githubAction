@@ -1,4 +1,36 @@
 # 原程式碼
+# name: Node.js CI/CD
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
+
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: '20'
+
+#     # 安裝專案依賴
+#     - name: Install dependencies
+#       run: npm install
+
+#     # 確保 mocha 擁有執行權限 (如果需要)
+#     - name: Grant Mocha execute permissions
+#       run: chmod +x ./node_modules/.bin/mocha
+
+#     # 執行測試
+#     - name: Run tests
+#       run: ./node_modules/.bin/mocha --exit
+
+# 在windows/Linx/mac三種系統測試
 name: Node.js CI/CD
 
 on:
@@ -7,25 +39,43 @@ on:
       - main
 
 jobs:
-  build:
+  build-ubuntu:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Grant Mocha execute permissions
+        run: chmod +x ./node_modules/.bin/mocha
+      - name: Run tests
+        run: ./node_modules/.bin/mocha --exit
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: .\node_modules\.bin\mocha --exit
 
-    # 安裝專案依賴
-    - name: Install dependencies
-      run: npm install
-
-    # 確保 mocha 擁有執行權限 (如果需要)
-    - name: Grant Mocha execute permissions
-      run: chmod +x ./node_modules/.bin/mocha
-
-    # 執行測試
-    - name: Run tests
-      run: ./node_modules/.bin/mocha --exit
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: ./node_modules/.bin/mocha --exit

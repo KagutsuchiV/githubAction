@@ -1,6 +1,7 @@
 // npm test
 
 const request = require('supertest');
+const { expect } = require('chai'); // 導入 expect
 // const express = require('express');
 
 const app = require('../githubAction'); // 引用你的Express應用程式
@@ -30,7 +31,7 @@ describe('POST /git', () => {
 
 describe('GET /git/:id', ()=>{
   it('should return data with specific id', (done)=>{
-    // 虛線POST獲得id
+    // 需先POST獲得id
     request(app)
       .post('/git')
       .expect(200)

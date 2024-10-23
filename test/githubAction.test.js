@@ -1,10 +1,9 @@
 // npm test
 
 import request from 'supertest';
+import { expect } from 'chai'; // 如果要使用 expect 進行測試，請導入它
 import app from '../githubAction'; // 引用你的Express應用程式
 // const express = require('express');
-
-const app = require('../githubAction'); // 引用你的Express應用程式
 
 describe('GET /', () => {
   it('should return GitHub Action', (done) => {

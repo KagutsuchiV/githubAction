@@ -29,11 +29,11 @@ app.get('/git/:id',(req,res)=>{
 })
 
 // 如果此應用程式是被測試引用的，則不啟動伺服器
-if (require.main === module) {
-    app.listen(port, () => {
-        console.log(`http://localhost:${port}`);
-    });
-}
+// if (require.main === module) {
+//     app.listen(port, () => {
+//         console.log(`http://localhost:${port}`);
+//     });
+// }
 
 // module.exports = app; // 將app導出以供測試使用 舊寫法
 export default app; // 將app導出以供測試使用

@@ -5,7 +5,8 @@
   "main": "githubAction.js",
   "type": "module",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.21.1"

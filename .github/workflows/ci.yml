@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main # 或者你想要執行 CI/CD 的分支
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20' # 使用的 Node.js 版本，可以根據需要調整
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test # 確保你有一個 test 腳本在 package.json 中
+
+      - name: Deploy to production
+        run: |
+          # 這裡添加你的部署指令
+          # 例如：
+          # npm run build
+          # pm2 restart your-app # 如果使用 pm2 來管理伺服器

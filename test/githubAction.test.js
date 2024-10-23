@@ -1,7 +1,7 @@
 // npm test
 
 const request = require('supertest');
-const express = require('express');
+// const express = require('express');
 
 const app = require('../githubAction'); // 引用你的Express應用程式
 
@@ -25,5 +25,37 @@ describe('POST /git', () => {
         res.body.defense === 30;
       })
       .end(done);
+  });
+});
+
+describe('GET /git/:id', ()=>{
+  it('should return data with specific id', (done)=>{
+    // 虛線POST獲得id
+    request(app)
+      .post('/git')
+      .expect(200)
+      .end((err, res)=>{
+        if(err) return done(err);
+        const id = res.body.id;
+
+        // 測試get
+        request(app)
+          .get(`/git/${id}`)
+          .expect(200)
+          .expect(res=>{
+            expect(res.body.id).toBe(id);
+            expect(res.body.name).toBe('Joe');
+            expect(res.body.attack).toBe(50);
+            expect(res.body.defense).toBe(30);
+          })
+          .end(done);
+      });
+  });
+
+  it('should return 404 if data not found', (done)=>{
+    request(app)
+      .get('/git/999') //假設999 不存在
+      .expect(404)
+      .expect('get error', done);
   });
 });

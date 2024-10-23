@@ -43,10 +43,10 @@ describe('GET /git/:id', ()=>{
           .get(`/git/${id}`)
           .expect(200)
           .expect(res=>{
-            expect(res.body.id).toBe(id);
-            expect(res.body.name).toBe('Joe');
-            expect(res.body.attack).toBe(50);
-            expect(res.body.defense).toBe(30);
+            expect(res.body.id).equal(id);
+            expect(res.body.name).equal('Joe');
+            expect(res.body.attack).equal(50);
+            expect(res.body.defense).equal(30);
           })
           .end(done);
       });

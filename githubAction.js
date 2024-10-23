@@ -2,6 +2,8 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
+app.use(express.json()); // 確保可以解析 JSON
+
 app.get('/', (req, res) => {
     res.send('GitHub Action');
 });
@@ -33,4 +35,6 @@ if (require.main === module) {
     });
 }
 
-module.exports = app; // 將app導出以供測試使用
+// module.exports = app; // 將app導出以供測試使用 舊寫法
+export default app; // 將app導出以供測試使用
+

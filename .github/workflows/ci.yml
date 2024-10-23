@@ -1,3 +1,35 @@
+# 原程式碼
+# name: Node.js CI/CD
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
+
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: '20'
+
+#     # 安裝專案依賴
+#     - name: Install dependencies
+#       run: npm install
+
+#     # 確保 mocha 擁有執行權限 (如果需要)
+#     - name: Grant Mocha execute permissions
+#       run: chmod +x ./node_modules/.bin/mocha
+
+#     # 執行測試
+#     - name: Run tests
+#       run: ./node_modules/.bin/mocha --exit
+
 name: Node.js CI/CD
 
 on:
@@ -21,10 +53,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # 確保 mocha 擁有執行權限 (如果需要)
-    - name: Grant Mocha execute permissions
-      run: chmod +x ./node_modules/.bin/mocha
-
     # 執行測試
     - name: Run tests
-      run: ./node_modules/.bin/mocha --exit
+      run: npm test

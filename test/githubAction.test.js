@@ -2,7 +2,7 @@
 
 import request from 'supertest';
 import { expect } from 'chai'; // 如果要使用 expect 進行測試，請導入它
-import app from '../githubAction'; // 引用你的Express應用程式
+import app from '../githubAction.js'; // 引用你的Express應用程式
 // const express = require('express');
 
 describe('GET /', () => {

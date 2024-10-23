@@ -1,7 +1,7 @@
 // npm test
 
-const request = require('supertest');
-const { expect } = require('chai'); // 導入 expect
+import request from 'supertest';
+import app from '../githubAction'; // 引用你的Express應用程式
 // const express = require('express');
 
 const app = require('../githubAction'); // 引用你的Express應用程式
